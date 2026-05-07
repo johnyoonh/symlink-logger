@@ -1,0 +1,7 @@
+.DS_Store
+*.log
+*.jsonl
+/symlink-logger
+/dist/
+/build/
+/coverage.out
