@@ -1,6 +1,7 @@
 # symlink-logger
 
-`symlink-logger` helps retire directory symlinks safely.
+`symlink-logger` helps retire directory symlinks safely. Its CLI command is
+`symlog`.
 
 It discovers symlinks, replaces selected directory symlinks with FUSE
 mountpoints, mirrors the original target directory, logs filesystem access as
@@ -18,67 +19,70 @@ as [macFUSE](https://macfuse.github.io/).
 ## Install
 
 ```bash
-go install github.com/johnyoonh/symlink-logger/cmd/symlink-logger@latest
+go install github.com/johnyoonh/symlink-logger/cmd/symlog@latest
 ```
 
 From a local checkout:
 
 ```bash
-go build -o ~/.local/bin/symlink-logger ./cmd/symlink-logger
+go build -o ~/.local/bin/symlog ./cmd/symlog
 ```
+
+`cmd/symlink-logger` remains as a compatibility command, but new usage should
+prefer `symlog`.
 
 ## Workflow
 
 Preview candidates:
 
 ```bash
-symlink-logger scan --root ~/repos
-symlink-logger scan --root ~/repos --recursive
-symlink-logger plan --root ~/repos --recursive
+symlog scan --root ~/repos
+symlog scan --root ~/repos --recursive
+symlog plan --root ~/repos --recursive
 ```
 
 Replace one symlink with a mountpoint directory:
 
 ```bash
-symlink-logger replace --old ~/repos/old-project
+symlog replace --old ~/repos/old-project
 ```
 
 Mount one path and start logging:
 
 ```bash
-symlink-logger mount --old ~/repos/old-project
+symlog mount --old ~/repos/old-project
 ```
 
 Replace and mount in one foreground command:
 
 ```bash
-symlink-logger mount --old ~/repos/old-project --replace
+symlog mount --old ~/repos/old-project --replace
 ```
 
 Dry-run recursive replacement:
 
 ```bash
-symlink-logger replace-all --root ~/repos --recursive
+symlog replace-all --root ~/repos --recursive
 ```
 
 Apply recursive replacement after reviewing the dry run:
 
 ```bash
-symlink-logger replace-all --root ~/repos --recursive --apply
+symlog replace-all --root ~/repos --recursive --apply
 ```
 
 Mount every directory symlink in a tree:
 
 ```bash
-symlink-logger mount-all --root ~/repos --recursive --replace
+symlog mount-all --root ~/repos --recursive --replace
 ```
 
 Unmount and restore:
 
 ```bash
-symlink-logger unmount --old ~/repos/old-project --restore
-symlink-logger unmount-all --registry ~/repos/repo-symlink-candidates.tsv --restore
-symlink-logger restore --old ~/repos/old-project
+symlog unmount --old ~/repos/old-project --restore
+symlog unmount-all --registry ~/repos/repo-symlink-candidates.tsv --restore
+symlog restore --old ~/repos/old-project
 ```
 
 ## Logs
@@ -92,7 +96,7 @@ The default log path is:
 Override it with:
 
 ```bash
-SYMLINK_LOGGER_LOG=/tmp/symlink-access.jsonl symlink-logger mount ...
+SYMLINK_LOGGER_LOG=/tmp/symlink-access.jsonl symlog mount ...
 ```
 
 Each event includes timestamp, old path, target path, relative path, operation,
