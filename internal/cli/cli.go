@@ -54,8 +54,8 @@ func Main() {
 
 func usage() {
 	fmt.Fprintln(os.Stderr, "usage:")
-	fmt.Fprintln(os.Stderr, "  symlog scan --root /Users/john/repos [--recursive]")
-	fmt.Fprintln(os.Stderr, "  symlog plan --root /Users/john/repos [--recursive]")
+	fmt.Fprintln(os.Stderr, "  symlog scan --root ~/repos [--recursive]")
+	fmt.Fprintln(os.Stderr, "  symlog plan --root ~/repos [--recursive]")
 	fmt.Fprintln(os.Stderr, "  symlog replace-all --root ROOT [--recursive] [--apply]")
 	fmt.Fprintln(os.Stderr, "  symlog replace --old OLD [--registry PATH]")
 	fmt.Fprintln(os.Stderr, "  symlog mount --old OLD [--target TARGET] [--registry PATH] [--replace]")
